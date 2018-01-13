@@ -4,18 +4,18 @@
 
 local radares = {
 {x = 379.68807983398, y = -1048.3527832031, z = 29.250692367554},
-{x = 379.68807983398, y = 1048.3527832031, z = 29.250692367554}
+{x = -253.10794067383, y = -630.20385742188, z = 33.002685546875},
 }
 
--- 379.68807983398,-1048.3527832031,29.250692367554
+-- -253.10794067383,-630.20385742188,33.002685546875
 
 Citizen.CreateThread(function()
   while true do
     Wait(0)
 	for k,v in pairs(radares) do
-	pP = GetPlayerPed(-1)
-	local coords = GetEntityCoords(pP, true)
-	if Vdist2(v.x, v.y, v.z, coords["x"], coords["y"], coords["z"]) < 10 then
+	local player = GetPlayerPed(-1)
+	local coords = GetEntityCoords(player, true)
+	if Vdist2(radares[k].x, radares[k].y, radares[k].z, coords["x"], coords["y"], coords["z"]) < 10 then
 	Citizen.Trace("estas pasando por un radar")
 		checkSpeed()
 	end
@@ -24,10 +24,11 @@ Citizen.CreateThread(function()
 end)
 
   function checkSpeed()
+  local pP = GetPlayerPed(-1)
   local speed = GetEntitySpeed(pP)
   local vehicle = GetVehiclePedIsIn(pP, false)
   local driver = GetPedInVehicleSeat(vehicle, -1)
-  local maxspeed = 80
+  local maxspeed = 10
 	local kmhspeed = math.ceil(speed*3.6)
 		if kmhspeed > maxspeed and driver == pP then
 			Citizen.Wait(250)
