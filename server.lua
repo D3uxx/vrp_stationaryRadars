@@ -8,6 +8,6 @@ RegisterServerEvent('cobrarMulta')
 AddEventHandler('cobrarMulta', function()
 	local user_id = vRP.getUserId({source})
 	local player = vRP.getUserSource({user_id})
-	local multa = 120000
+	local multa = 250
 	vRP.tryFullPayment({user_id,multa})
 end)
