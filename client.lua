@@ -1,13 +1,11 @@
 --===============================================--===============================================
---= stationary radars https://github.com/DreanorGTA5Mods/StationaryRadar				 	     =
+--= stationary radars based on 	https://github.com/DreanorGTA5Mods/StationaryRadar	         =
 --===============================================--===============================================
 
 local radares = {
 {x = 379.68807983398, y = -1048.3527832031, z = 29.250692367554},
 {x = -253.10794067383, y = -630.20385742188, z = 33.002685546875},
 }
-
--- -253.10794067383,-630.20385742188,33.002685546875
 
 Citizen.CreateThread(function()
   while true do
@@ -37,7 +35,7 @@ end)
             exports.pNotify:SendNotification({
             text = "You've been fined for speeding.",
             type = "error",
-            timeout = math.random(100, 3500),
+            timeout = 5000,
             layout = "centerLeft",
             queue = "left"
           })
